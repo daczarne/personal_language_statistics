@@ -1,11 +1,12 @@
-import yaml
 import requests
+import yaml
 
 DEFAULT_COLOR = "#cccccc"
 
 
 #* Requests raw file and parses it as a Python dict
-linguist_repo = requests.get("https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml")
+linguist_languages_url: str = "https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml"
+linguist_repo = requests.get(url = linguist_languages_url)
 raw_data = yaml.safe_load(linguist_repo.content)
 
 
@@ -24,5 +25,5 @@ language_colors = dict(zip(languages, colors))
 
 
 #* Save language_colors to a yaml file
-with open("data/language_colors.yaml", "w") as outfile:
-    yaml.dump(language_colors, outfile, default_flow_style = False)
+with open(file = "data/language_colors.yaml", mode = "w") as outfile:
+    yaml.dump(data = language_colors, stream = outfile, default_flow_style = False)

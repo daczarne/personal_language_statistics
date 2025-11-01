@@ -1,7 +1,8 @@
-from github import Github
 import json
-import requests
+
 import pandas as pd
+import requests
+from github import Github
 
 #* Fetches credentials
 with open("data/credentials.json", "r") as file:
@@ -43,17 +44,19 @@ df_data = {
     "repo_name": repo_name,
     "is_private": is_private,
     "created_date": created_date,
-    "is_archived": is_archived
+    "is_archived": is_archived,
 }
 
-df = pd.DataFrame(df_data)
-lang_df = pd.json_normalize(languages).explode(list("LS")).rename(columns = {"L": "language", "S": "size"})
+df = pd.DataFrame(data = df_data)
+lang_df = pd.json_normalize(data = languages) \
+    .explode(column = list("LS")) \
+    .rename(columns = {"L": "language", "S": "size"})
 
 df = df.merge(
-    lang_df,
+    right = lang_df,
     how = "left",
     on = "repo_name"
 )
 
 #* Saves CSV with data
-df.to_csv("data/languages.csv", index = False)
+df.to_csv(path_or_buf = "data/languages.csv", index = False)
