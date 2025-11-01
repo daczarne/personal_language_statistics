@@ -127,4 +127,5 @@
         "runscript",
         "traceback"
     ],
+    "python.defaultInterpreterPath": ".venv/bin/python",
 }
