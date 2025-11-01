@@ -1,8 +1,5 @@
-*.cfg linguist-detectable
-*.mako linguist-detectable
+*.ini linguist-detectable
 *.md linguist-detectable
 *.md linguist-documentation=false
-*.sql linguist-detectable
-*.sql linguist-language=sql
-*.ini linguist-detectable
 *.toml linguist-detectable
+*.yaml linguist-detectable
