@@ -1,27 +1,39 @@
+from typing import TypedDict
+
 import requests
 import yaml
 
 DEFAULT_COLOR = "#cccccc"
 
 
-#* Requests raw file and parses it as a Python dict
+class LanguageInformation(TypedDict, total = False):
+    type: str
+    ace_mode: str
+    extensions: list[str]
+    filenames: list[str]
+    language_id: int
+    tm_scope: str
+    aliases: list[str]
+    codemirror_mode: str
+    codemirror_mime_type: str
+    color: str
+    fs_name: str
+    group: str
+    interpreters: list[str]
+    wrap: bool
+
+
+type LanguageColor = dict[str, str]
+
+
+#* Request raw file and parses it as a Python dict
 linguist_languages_url: str = "https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml"
-linguist_repo = requests.get(url = linguist_languages_url)
-raw_data = yaml.safe_load(linguist_repo.content)
+linguist_repo: requests.Response = requests.get(url = linguist_languages_url)
+raw_data: dict[str, LanguageInformation] = yaml.safe_load(stream = linguist_repo.content)
 
-
-#* Parse data into a dict. Language names are the keys, colors the values
-languages = list(raw_data.keys())
-languages_data = list(raw_data.values())
-colors = []
-
-for i in range(0, len(languages)):
-    try:
-        colors.append((languages_data[i]["color"].lower()))
-    except:
-        colors.append(DEFAULT_COLOR)
-
-language_colors = dict(zip(languages, colors))
+language_colors: LanguageColor = {
+    name: information.get("color", DEFAULT_COLOR).lower() for name, information in raw_data.items()
+}
 
 
 #* Save language_colors to a yaml file
