@@ -40,7 +40,9 @@
         "vs_code",
     ],
     "words": [ ],
-    "ignoreWords": [ ],
+    "ignoreWords": [
+        "daczarne",
+    ],
     "overrides": [
         {
             "filename": "**/*.py",
