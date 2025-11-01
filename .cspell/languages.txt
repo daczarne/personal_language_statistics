@@ -80,13 +80,17 @@ Lmafia
 Logtalk
 LOLCODE
 Marko
+mcfunction
+mdsvex
 Mirah
 MLIR
 Modelica
 Moocode
 Motoko
 MTML
+mupad
 Myghty
+nanorc
 NASL
 Nearley
 Nemerle
@@ -128,6 +132,7 @@ STON
 Survex
 Sweave
 Tcsh
+templ
 Texinfo
 Toit
 TSPLIB
