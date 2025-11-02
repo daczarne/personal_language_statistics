@@ -1,4 +1,4 @@
-from data import analysis, language_colors, repositories_data
+from modules import analysis, language_colors, repositories_data
 
 print("Fetching language color data...")
 print()

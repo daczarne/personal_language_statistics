@@ -37,7 +37,7 @@ def update_colors() -> None:
     }
     
     #* Save language_colors to a yaml file
-    with open(file = "data/language_colors.yaml", mode = "w") as outfile:
+    with open(file = "modules/language_colors.yaml", mode = "w") as outfile:
         yaml.dump(data = language_colors, stream = outfile, default_flow_style = False)
 
 

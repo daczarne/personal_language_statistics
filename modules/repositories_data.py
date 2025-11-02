@@ -9,8 +9,8 @@ type Credentials = dict[str, str]
 
 
 #* Fetches credentials
-with open(file = "data/credentials.json", mode = "r") as file:
-    auth: Credentials = json.load(file)
+with open(file = "modules/credentials.json", mode = "r") as file:
+    auth: Credentials = json.load(fp = file)
 
 
 def update_repositories_data() -> None:
@@ -44,11 +44,11 @@ def update_repositories_data() -> None:
                 {
                     "repo_name": repo.name,
                     "L": list(languages_data.keys()),
-                    "S": list(languages_data.values())
+                    "S": list(languages_data.values()),
                 }
             )
     
-    df_data = {
+    df_data: dict = {
         "repo_name": repo_name,
         "is_private": is_private,
         "created_date": created_date,
@@ -67,7 +67,7 @@ def update_repositories_data() -> None:
     )
     
     #* Saves CSV with data
-    df.to_csv(path_or_buf = "data/languages.csv", index = False)
+    df.to_csv(path_or_buf = "modules/languages.csv", index = False)
 
 
 if __name__ == "__main__":

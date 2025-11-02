@@ -9,7 +9,7 @@ import yaml
 def update_plot() -> None:
     
     #* Read languages data
-    languages: pd.DataFrame = pd.read_csv(filepath_or_buffer = "data/languages.csv")
+    languages: pd.DataFrame = pd.read_csv(filepath_or_buffer = "modules/languages.csv")
     
     #* Adds new columns to data frame
     byte_size: pd.DataFrame = languages.groupby(by = ["language"])["size"].sum().reset_index(name = "size")
@@ -28,7 +28,7 @@ def update_plot() -> None:
     
     
     #* Read colors data
-    with open(file = "data/language_colors.yaml", mode = "r") as yaml_file:
+    with open(file = "modules/language_colors.yaml", mode = "r") as yaml_file:
         colors_yaml: dict = yaml.safe_load(stream = yaml_file)
     
     colors: pd.DataFrame = pd.DataFrame.from_dict(
@@ -108,7 +108,7 @@ def update_plot() -> None:
     ax.axis("off")
     fig.patch.set_facecolor(color = "#181a1f")
     
-    fig.savefig(fname = "data/languages_plot.png", dpi = 200, bbox_inches = "tight")
+    fig.savefig(fname = "modules/languages_plot.png", dpi = 200, bbox_inches = "tight")
     plt.clf()
 
 
