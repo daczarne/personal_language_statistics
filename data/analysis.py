@@ -9,11 +9,11 @@ import yaml
 def update_plot() -> None:
     
     #* Read languages data
-    languages: pd.DataFrame = pd.read_csv("data/languages.csv")
+    languages: pd.DataFrame = pd.read_csv(filepath_or_buffer = "data/languages.csv")
     
     #* Adds new columns to data frame
-    byte_size: pd.DataFrame = languages.groupby(["language"])["size"].sum().reset_index(name = "size")
-    n_repos: pd.DataFrame = languages.groupby(["language"])["size"].count().reset_index(name = "repos")
+    byte_size: pd.DataFrame = languages.groupby(by = ["language"])["size"].sum().reset_index(name = "size")
+    n_repos: pd.DataFrame = languages.groupby(by = ["language"])["size"].count().reset_index(name = "repos")
     lang_props: pd.DataFrame = byte_size.merge(
         right = n_repos,
         how = "left",
@@ -31,10 +31,12 @@ def update_plot() -> None:
     with open(file = "data/language_colors.yaml", mode = "r") as yaml_file:
         colors_yaml: dict = yaml.safe_load(stream = yaml_file)
     
-    colors: pd.DataFrame = pd.DataFrame.from_dict({
-        "language": colors_yaml.keys(),
-        "color": colors_yaml.values(),
-    })
+    colors: pd.DataFrame = pd.DataFrame.from_dict(
+        data = {
+            "language": colors_yaml.keys(),
+            "color": colors_yaml.values(),
+        }
+    )
     
     lang_props = lang_props.merge(
         right = colors,
@@ -51,7 +53,7 @@ def update_plot() -> None:
     for i in range(1, plot_columns + 1):
         x_axis = np.append(
             arr = x_axis,
-            values = np.repeat(a = np.array(object = [i]), repeats = plot_rows)
+            values = np.repeat(a = np.array(object = [i]), repeats = plot_rows),
         )
     x_axis = x_axis[0:lang_props.shape[0]]
     
@@ -74,13 +76,13 @@ def update_plot() -> None:
     
     
     #* Add label for each language
-    labels = []
+    labels: list[str] = []
     for i in range(0, lang_props.shape[0]):
-        value = lang_props["size_prop"][i] * 100
+        value: float = lang_props["size_prop"][i] * 100.0
         if value < 0.01:
-            labels.append(f'{lang_props["language"][i]} (<0.01%)')
+            labels.append(f"{lang_props["language"][i]} (<0.01%)")
         else:
-            labels.append(f'{lang_props["language"][i]} ({value:.2f}%)')
+            labels.append(f"{lang_props["language"][i]} ({value:.2f}%)")
     lang_props["label"] = labels
     
     
