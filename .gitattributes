@@ -2,4 +2,3 @@
 *.md linguist-detectable
 *.md linguist-documentation=false
 *.toml linguist-detectable
-*.yaml linguist-detectable
