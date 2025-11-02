@@ -1,4 +1,4 @@
-from data import language_colors, repositories_data
+from data import analysis, language_colors, repositories_data
 
 print("Fetching language color data...")
 
@@ -16,7 +16,7 @@ print()
 
 print("Building plot...")
 
-from analysis import build_plot
+analysis.update_plot()
 
 print("Plot built")
 print()
