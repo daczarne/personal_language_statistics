@@ -82,8 +82,8 @@ def update_plot() -> None:
         else:
             labels.append(f'{lang_props["language"][i]} ({value:.2f}%)')
     lang_props["label"] = labels
-
-
+    
+    
     #* Build the plot
     fig = plt.figure()
     ax = fig.add_subplot()
