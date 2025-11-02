@@ -1,7 +1,9 @@
+from data import language_colors
+
 print("Fetching language color data...")
 print("-----------------------")
 
-from data import fetch_colors
+language_colors.update_colors()
 
 print("All fetched!")
 print("-----------------------")
