@@ -73,9 +73,12 @@ Kerbo
 Koka
 Kusto
 kvlang
+Lambdapi
+Langium
 Ligo
 LIGO
 Linx
+Liquidsoap
 Lmafia
 Logtalk
 LOLCODE
@@ -134,6 +137,7 @@ Sweave
 Tcsh
 templ
 Texinfo
+TMDL
 Toit
 TSPLIB
 Typst
