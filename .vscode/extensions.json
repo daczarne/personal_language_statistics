@@ -7,8 +7,6 @@
     "davidanson.vscode-markdownlint",
     "dracula-theme.theme-dracula",
     "editorconfig.editorconfig",
-    "github.vscode-github-actions",
-    "github.vscode-pull-request-github",
     "ms-python.python",
     "ms-python.vscode-pylance",
     "njpwerner.autodocstring",
